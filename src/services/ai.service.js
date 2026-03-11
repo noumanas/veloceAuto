@@ -11,7 +11,7 @@ class AIService {
     
     if (this.apiKey) {
       this.genAI = new GoogleGenerativeAI(this.apiKey);
-      this.model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      this.model = this.genAI.getGenerativeModel({ model: "gemini-flash-latest" });
     }
   }
 
@@ -55,8 +55,10 @@ class AIService {
       const response = await result.response;
       return response.text().trim();
     } catch (error) {
-      console.error("Gemini API Error:", error);
-      throw new Error("Failed to generate description from Gemini AI.");
+      console.error("Gemini API Error details:", error);
+      // Return more specific error message if available
+      const errorMessage = error.message || "Unknown Gemini API error";
+      throw new Error(`Gemini AI Error: ${errorMessage}`);
     }
   }
 }
