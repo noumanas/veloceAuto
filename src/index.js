@@ -5,6 +5,7 @@ const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard');
 const vehicleRoutes = require('./routes/vehicles');
 const leadRoutes = require('./routes/leads');
+const aiRoutes = require('./routes/ai');
 
 const connectDB = require('./config/db');
 const swaggerUi = require('swagger-ui-express');
@@ -27,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/leads', leadRoutes);
+app.use('/api/ai', aiRoutes);
 
 app.get('/health', (req, res) => {
     res.json({ status: 'ok' });
